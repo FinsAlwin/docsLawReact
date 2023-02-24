@@ -1,17 +1,18 @@
 const DownloadFile = (props) => {
-  const handleDownload = () => {
+  const handleDownload = async () => {
     const link = document.createElement("a");
     link.href = props.fileUrl;
-    link.setAttribute("download", "file");
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    await link.setAttribute("download", "file");
+    await document.body.appendChild(link);
+    await link.click();
+    await link.remove();
+    // window.location.reload();
   };
 
   return (
     <div>
-      <button onClick={handleDownload} className={`CustomButton shadow`}>
-        Download
+      <button onClick={handleDownload} className={`CustomButton`}>
+        Download File
       </button>
     </div>
   );
