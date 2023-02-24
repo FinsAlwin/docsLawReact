@@ -10,11 +10,11 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-import Tabs from "@mui/material/Tabs";
 import TabPanel from "@mui/lab/TabPanel";
 import CustomInputFile from "../Form/inputFile";
 import DownloadModal from "../download/downloadFile";
 import { useEffect } from "react";
+import VerticalTabs from "../Tab";
 import "./styles.css";
 
 export default function Petition() {
@@ -382,9 +382,7 @@ export default function Petition() {
                     />
                   </div>
                 </div>
-
                 <hr />
-
                 <div className="row">
                   <div className="col-lg-6">
                     <CustomInput
@@ -481,30 +479,34 @@ export default function Petition() {
 
                   <div className="col-lg-6"></div>
                 </div>
-
-                <hr />
-
-                <Box sx={{ width: "100%", typography: "body1" }}>
+                {/* 
+                <hr /> */}
+                {/* <Box sx={{ width: "100%", typography: "body1" }}>
                   <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                      <Tabs
+                      <TabList
                         onChange={handleTabChange}
                         orientation="vertical"
                         variant="scrollable"
                       >
                         {renderAnnexures()}
-                      </Tabs>
+                      </TabList>
                     </Box>
                     {renderAnnexuresTabPanel()}
                   </TabContext>
-                </Box>
-
+                </Box> */}
                 <hr />
-
+                <VerticalTabs
+                  annexuresNo={annexuresNo}
+                  onChange={handleTabChange}
+                  value={value}
+                  changeValue={(e) => setValue(e)}
+                />
+                <hr />
+                &nbsp; &nbsp; &nbsp;
                 {!modalIsOpen && (
                   <CustomButton name="GENERATE TEMPLATE" type="submit" />
                 )}
-
                 {/* {downloadUrl.length !== 0 && (
                   <DownloadFile fileUrl={downloadUrl} />
                 )} */}
@@ -514,6 +516,7 @@ export default function Petition() {
         </form>
 
         {/* &nbsp;
+
       {htmldocPreview.length !== 0 && (
         <PetitionPreview htmlContent={htmldocPreview} />
       )} */}
