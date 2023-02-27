@@ -7,6 +7,7 @@ const DownloadModal = (props) => {
 
   const handleDownload = () => {
     // handle download logic here
+    props.onDownload();
   };
 
   return (
@@ -31,7 +32,10 @@ const DownloadModal = (props) => {
         }}
       >
         <div className="downloadContainer">
-          <DownloadFile fileUrl={props.downloadUrl} />
+          <DownloadFile
+            fileUrl={props.downloadUrl}
+            onDownload={handleDownload}
+          />
         </div>
       </Modal>
     </div>

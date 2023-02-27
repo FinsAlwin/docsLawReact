@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkdocs_law_front=self.webpackChunkdocs_law_front||[]).push([[938],{3938:function(n,r,s){s.r(r),s.d(r,{default:function(){return t}});var a=s(7689),c=(s(2791),s(184)),e=function(){return(0,c.jsx)("nav",{className:"navbar navbar-light bg-light p-2",children:(0,c.jsx)("h3",{children:"Docs-Law Demo"})})},t=function(){return(0,c.jsxs)("main",{children:[(0,c.jsx)(e,{}),(0,c.jsx)(a.j3,{})]})}}}]);
+//# sourceMappingURL=938.fc2b58d7.chunk.js.map

@@ -15,9 +15,11 @@ import CustomInputFile from "../Form/inputFile";
 import DownloadModal from "../download/downloadFile";
 import { useEffect } from "react";
 import VerticalTabs from "../Tab";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 export default function Petition() {
+  const navigate = useNavigate();
   const [highCourt, setHighCourt] = useState("");
   const [juridiction, setJuridiction] = useState("");
   const [petitiontype, setPetitiontype] = useState("");
@@ -66,11 +68,10 @@ export default function Petition() {
     e.preventDefault();
 
     const indexList = [
-      "Urgent Application",
+      isUregent && "Urgent Application",
       "Notice of Motion",
       "Memo of Parties",
       "Synopsis & List of Dates",
-      "Some Title",
     ];
 
     const annexureList = [];
@@ -102,29 +103,32 @@ export default function Petition() {
         "{PETDATE}": date,
         "{PETFILLINGTYPE}": petFillingtype,
         "{DATEOFLISTING}": dateOfListing,
-        "{PETTITLE}": "Some Title",
       },
       annexureListings: stateAnnexures,
       indexList: updatedIndexList,
     };
 
-    const res = await fetch(
-      `http://docs-law-back-dev.ap-south-1.elasticbeanstalk.com/api/v1/genDocx`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify(payload),
-      }
-    );
+    await localStorage.setItem("data", JSON.stringify(payload));
 
-    const dataRes = await res.json();
+    navigate("/12345");
 
-    if (res.status == 200) {
-      await setDownloadUrl(dataRes.download_url);
-    }
+    // const res = await fetch(
+    //   `http://docs-law-back-dev.ap-south-1.elasticbeanstalk.com/api/v1/genDocx`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //     body: JSON.stringify(payload),
+    //   }
+    // );
+
+    // const dataRes = await res.json();
+
+    // if (res.status == 200) {
+    //   await setDownloadUrl(dataRes.download_url);
+    // }
   };
 
   const onValueChangeTextArea = (e, f) => {
@@ -458,7 +462,7 @@ export default function Petition() {
                       <label className="p-2">No. of Annexures</label>
                       <select
                         className="form-control w-25"
-                        onChange={(e) => setAnnexures(e.target.value)}
+                        onChange={(e) => setValue(`${e.target.value}`)}
                       >
                         <option value={1}>1</option>
                         <option value={2}>2</option>
@@ -496,17 +500,15 @@ export default function Petition() {
                   </TabContext>
                 </Box> */}
                 <hr />
-                <VerticalTabs
+                {/* <VerticalTabs
                   annexuresNo={annexuresNo}
                   onChange={handleTabChange}
                   value={value}
                   changeValue={(e) => setValue(e)}
                 />
-                <hr />
+                <hr /> */}
                 &nbsp; &nbsp; &nbsp;
-                {!modalIsOpen && (
-                  <CustomButton name="GENERATE TEMPLATE" type="submit" />
-                )}
+                {!modalIsOpen && <CustomButton name="NEXT" type="submit" />}
                 {/* {downloadUrl.length !== 0 && (
                   <DownloadFile fileUrl={downloadUrl} />
                 )} */}

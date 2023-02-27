@@ -7,6 +7,7 @@ const DownloadFile = (props) => {
     await link.click();
     await link.remove();
     // window.location.reload();
+    props.onDownload();
   };
 
   return (

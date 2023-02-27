@@ -1,16 +1,12 @@
 import "./App.css";
-import Petition from "./components/petition";
 import "bootstrap/dist/css/bootstrap.css";
+import { useRoutes } from "react-router-dom";
+import Themeroutes from "./routes/Router";
 
-function App() {
-  return (
-    <>
-      <nav className="navbar navbar-light bg-light p-2">
-        <h3>Docs-Law Demo</h3>
-      </nav>
-      <Petition />
-    </>
-  );
-}
+const App = () => {
+  const routing = useRoutes(Themeroutes);
+
+  return <div className="dark">{routing}</div>;
+};
 
 export default App;
